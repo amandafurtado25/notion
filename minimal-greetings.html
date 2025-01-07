@@ -1,42 +1,34 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greetings</title>
+    <title>Saudações</title>
 
     <style>
-
-
-        body{
+        body {
             font-variant-caps: all-petite-caps;
-
-
         }
 
         .widget {
-            padding: 5px 5px ;
-            color: #000000;
+            padding: 5px 5px;
+            color: #FFFFFF;
             display: flex;
-            justify-content:center;
-            align-items:center;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             max-width: 95%;
             margin: auto;
-            border: 3px solid #000000;
+            border: 3px solid #FFFFFF;
             border-radius: 5px;
-            box-shadow: 2px 2px 1px 0px #000000;
-
+            box-shadow: 2px 2px 1px 0px #FFFFFF;
         }
 
-           
-        .greet{
+        .greet {
             font-size: 3em;
         }
 
         .date {
-      
             font-family: monospace;
             font-size: 2em;
         }
@@ -55,118 +47,91 @@
             font-size: 1em;
             display: inline-block;
         }
-
-     
-
-
-
-
     </style>
 </head>
 <body>
-
-
-
-
-<div class="container>">
+<div class="container">
     <div class="widget">
-
-            <div class="greet" id="greet"></div>
-
-                <div class="date" id="date"></div>
-                <div class="clock">
-                    <div class="time" id="hour"></div>
-                    <div class="colon">:</div>
-                    <div class="time" id="min"></div>
-                    <div class="colon">:</div>
-                    <div class="time" id="sec"></div>
-                </div>
-           
-
-        
-
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+            <div class="time" id="hour"></div>
+            <div class="colon">:</div>
+            <div class="time" id="min"></div>
+            <div class="colon">:</div>
+            <div class="time" id="sec"></div>
+        </div>
     </div>
 </div>
-        
-
-
 
 <script>
-
-function dispalyGreetings(today){
-        hrs = today.getHours();
-        name=""
+    function exibirSaudacoes(hoje) {
+        let hrs = hoje.getHours();
+        let nome = "Amanda"
+        let saudacao = "";
         if (hrs < 12)
-            greet = 'Good Morning  '+name;
+            saudacao = 'Bom Dia ' + nome;
         else if (hrs >= 12 && hrs <= 17)
-            greet = 'Good Afternoon '+name;
+            saudacao = 'Boa Tarde ' + nome;
         else if (hrs >= 17 && hrs <= 24)
-            greet = 'Good Evening  '+name;
-        document.getElementById('greet').innerHTML = greet;
-
+            saudacao = 'Boa Noite ' + nome;
+        document.getElementById('greet').innerHTML = saudacao;
     }
 
-    function dispalyDate(today) {  
-       
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+    function exibirData(hoje) {  
+        const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const nomesMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-        var dayName = days[today.getDay()];
-        var monthName = monthNames[today.getMonth()];
-        var date = today.getDate();
-        var year = today.getFullYear();
-        document.getElementById('date').innerHTML =dayName+", "+monthName+" "+date+" "+year;
-
+        let nomeDia = dias[hoje.getDay()];
+        let nomeMes = nomesMeses[hoje.getMonth()];
+        let data = hoje.getDate();
+        let ano = hoje.getFullYear();
+        document.getElementById('date').innerHTML = nomeDia + ", " + nomeMes + " " + data + " " + ano;
     }
 
-
-    function dispalyClock(today) {
-
-        var hour = padZeros(twelveHour(today.getHours()));
-        var minutes = padZeros(today.getMinutes());
-        var seconds = padZeros(today.getSeconds());
+    function exibirRelogio(hoje) {
+        let hora = adicionarZeros(dozeHoras(hoje.getHours()));
+        let minutos = adicionarZeros(hoje.getMinutes());
+        let segundos = adicionarZeros(hoje.getSeconds());
        
-        if(today.getHours() >=12){
-            seconds+=" pm"
-        }
-        else{
-            seconds+=" am"
-        }
-       
-        document.getElementById('hour').innerHTML = hour;
-        document.getElementById('min').innerHTML = minutes;
-        document.getElementById('sec').innerHTML = seconds;
-    }
-
-    function twelveHour(hour) {
-        if (hour > 12) {
-            return hour -= 12
-        } else if (hour === 0) {
-            return hour = 12;
+        if (hoje.getHours() >= 12) {
+            segundos += " pm"
         } else {
-            return hour
+            segundos += " am"
+        }
+       
+        document.getElementById('hour').innerHTML = hora;
+        document.getElementById('min').innerHTML = minutos;
+        document.getElementById('sec').innerHTML = segundos;
+    }
+
+    function dozeHoras(hora) {
+        if (hora > 12) {
+            return hora -= 12
+        } else if (hora === 0) {
+            return hora = 12;
+        } else {
+            return hora;
         }
     }
-    function padZeros(num) {
+
+    function adicionarZeros(num) {
         if (num < 10) {
-            num = '0' + num
-        };
+            num = '0' + num;
+        }
         return num;
     }
 
-    function dispalyWidget() {
-        var today = new Date();
-        dispalyGreetings(today);
-        dispalyDate(today);
-        dispalyClock(today);
-        setTimeout(dispalyWidget, 500);
+    function exibirWidget() {
+        let hoje = new Date();
+        exibirSaudacoes(hoje);
+        exibirData(hoje);
+        exibirRelogio(hoje);
+        setTimeout(exibirWidget, 500);
     }
 
-    dispalyWidget()
-
+    exibirWidget();
 </script>
-
 </body>
 </html>

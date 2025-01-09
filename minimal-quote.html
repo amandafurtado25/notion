@@ -6,6 +6,14 @@
     <title>Citação</title>
 
     <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .widget {
             padding: 5px;
             color: #FFFFFF;
@@ -13,21 +21,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
-            width: 50vw;
             font-variant-caps: petite-caps;
             font-size: 2em;
-            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            box-sizing: border-box;
+            border: 2px solid #FFF;
         }
 
-        div {
-            width: 100%;
-            height: 100%;
+        .widget-inner {
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="widget" id="widget"></div>
+    <div class="widget" id="widget">
+        <div class="widget-inner" id="widget-inner"></div>
+    </div>
 
     <script>
         const quotes = [
@@ -60,7 +71,7 @@
         }
 
         function displayQuote() {
-            document.getElementById('widget').innerHTML = getRandomQuote();
+            document.getElementById('widget-inner').innerHTML = getRandomQuote();
         }
 
         function displayWidget() {

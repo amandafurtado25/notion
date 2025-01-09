@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote</title>
+    <title>Citação</title>
 
     <style>
         .widget {
@@ -37,14 +37,29 @@
     <div class="widget" id="widget"></div>
 
     <script>
-        const quotes = [
-            'Hoje vai ser um ótimo dia!',
-            'A fé nos faz ir além do possível',
-            'A cura acontece no caminho',
-            // (mais citações aqui)
-        ];
+const quotes = [
+    'A fé nos faz ir além do possível',
+    'A cura acontece no caminho',
+    'Devemos sempre ser gratos ao que Deus nos oferece',
+    'Para tudo tem um jeito, e se não teve jeito ainda não chegou ao fim',
+    'Ao se fazer presente, você pode descobrir “segredos” que fazem a vida ganhar outro tom',
+    'Se você der a oportunidade de realmente EXISTIR na vida, algumas coisas triviais podem ganhar muito sentido — e a presença preencher o que parece vazio.',
+    'É existindo pra valer, com consciência, que se desliga o modo piloto automático.',
+    'No final das contas, a sabedoria que é, de fato, um tesouro imaterial, é o mais valioso.',
+    'Lembra quando você queria o que você tem hoje?',
+    'Se você persegue dois coelhos ao mesmo tempo… Não vai pegar nenhum dos dois.',
+    'Fazer muitas coisas ao mesmo tempo é meramente a oportunidade de estragar mais de uma coisa ao mesmo tempo.',
+    'Seu passado não te define; é a sua percepção do passado que te define',
+    'O único caminho genuíno para a felicidade é aquele construído com base nas suas próprias prioridades, nas suas paixões e no que realmente importa para você.',
+    'Mas o propósito não se resume à carreira. Se assim fosse, uma criança, um idoso, um morador de rua ou uma dona de casa não teriam propósito. Uma vida com propósito acontece quando escolhemos trabalhar com o que temos. **O seu propósito é o que a vida pede de você AGORA.** Dê o seu melhor e pare de buscar uma resposta milagrosa que vai “resolver” tudo, ela não existe.',
+    'Seja guiado por decisões conscientes, não por desejos e impulsos',
+    'Não defina objetivos tão rígidos; talvez você nem saiba o que vai te fazer feliz de verdade. As coisas podem sair do planejado, mas se você estiver dando o melhor de si, a vida te dará o melhor dela (que você ainda nem conhece).',
+    'Sua vida não é sua se você se preocupa em excesso com o que os outros pensam.',
+    'É o novo que traz o desafio e a necessidade de aprendizado. E uma vida fácil se resumiria na famosa “zona de conforto”, que não nos proporciona o que nossa alma humana pede: evolução.',
+];
 
-        const INTERVAL = 86400000;
+
+        const INTERVAL = 43200000; // 12 horas em milissegundos
 
         function displayQuote(index) {
             document.getElementById('widget').innerHTML = quotes[index];
@@ -64,4 +79,3 @@
     </script>
 </body>
 </html>
-

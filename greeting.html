@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudações</title>
+
+    <style>
+        body {
+            font-variant-caps: all-petite-caps;
+            background-color: #000000;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .widget {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 95%;
+            margin: auto;
+            border: 3px solid #FFFFFF;
+            border-radius: 5px;
+            box-shadow: 2px 2px 1px 0px #FFFFFF;
+        }
+
+        .greet {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .date {
+            font-family: monospace;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .clock {
+            font-family: monospace;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .time {
+            display: inline-block;
+            min-width: 20px;
+        }
+
+        .colon {
+            font-size: 1em;
+            display: inline-block;
+        }
+
+        .quote {
+            font-size: 1.5em;
+            font-style: italic;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="widget">
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+            <div class="time" id="hour"></div>
+            <div class="colon">:</div>
+            <div class="time" id="min"></div>
+            <div class="colon">:</div>
+            <div class="time" id="sec"></div>
+        </div>
+        <div class="quote" id="quote"></div>
+    </div>
+</div>
+
+<script>
+    function exibirSaudacoes(hoje) {
+        let hrs = hoje.getHours();
+        let nome = "Amanda";
+        let saudacao = "";
+        if (hrs < 12)
+            saudacao = 'Bom Dia ' + nome;
+        else if (hrs >= 12 && hrs <= 17)
+            saudacao = 'Boa Tarde ' + nome;
+        else if (hrs >= 17 && hrs <= 24)
+            saudacao = 'Boa Noite ' + nome;
+        document.getElementById('greet').innerHTML = saudacao;
+    }
+
+    function exibirData(hoje) {
+        const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const nomesMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+        let nomeDia = dias[hoje.getDay()];
+        let nomeMes = nomesMeses[hoje.getMonth()];
+        let data = hoje.getDate();
+        let ano = hoje.getFullYear();
+        document.getElementById('date').innerHTML = nomeDia + ", " + data + " " + nomeMes + " " + ano;
+    }
+
+    function exibirRelogio(hoje) {
+        let hora = adicionarZeros(dozeHoras(hoje.getHours()));
+        let minutos = adicionarZeros(hoje.getMinutes());
+        let segundos = adicionarZeros(hoje.getSeconds());
+
+        if (hoje.getHours() >= 12) {
+            segundos += " pm";
+        } else {
+            segundos += " am";
+        }
+
+        document.getElementById('hour').innerHTML = hora;
+        document.getElementById('min').innerHTML = minutos;
+        document.getElementById('sec').innerHTML = segundos;
+    }
+
+    function dozeHoras(hora) {
+        if (hora > 12) {
+            return hora -= 12;
+        } else if (hora === 0) {
+            return hora = 12;
+        } else {
+            return hora;
+        }
+    }
+
+    function adicionarZeros(num) {
+        if (num < 10) {
+            num = '0' + num;
+        }
+        return num;
+    }
+
+    const quotes = [
+        'Hoje vai ser um ótimo dia!',
+        'A fé nos faz ir além do possível',
+        'A cura acontece no caminho',
+        'Devemos sempre ser gratos ao que Deus nos oferece',
+        'Para tudo tem um jeito, e se não teve jeito ainda não chegou ao fim',
+        'Ao se fazer presente, você pode descobrir “segredos” que fazem a vida ganhar outro tom',
+        'Se você der a oportunidade de realmente EXISTIR na vida, algumas coisas triviais podem ganhar muito sentido — e a presença preencher o que parece vazio.',
+        'É existindo pra valer, com consciência, que se desliga o modo piloto automático.',
+        'No final das contas, a sabedoria que é, de fato, um tesouro imaterial, é o mais valioso.',
+        'Lembra quando você queria o que você tem hoje?',
+        'Se você persegue dois coelhos ao mesmo tempo… Não vai pegar nenhum dos dois.',
+        'Fazer muitas coisas ao mesmo tempo é meramente a oportunidade de estragar mais de uma coisa ao mesmo tempo.',
+        'Seu passado não te define; é a sua percepção do passado que te define',
+        'O único caminho genuíno para a felicidade é aquele construído com base nas suas próprias prioridades, nas suas paixões e no que realmente importa para você.',
+        'Mas o propósito não se resume à carreira. Se assim fosse, uma criança, um idoso, um morador de rua ou uma dona de casa não teriam propósito. Uma vida com propósito acontece quando escolhemos trabalhar com o que temos. **O seu propósito é o que a vida pede de você AGORA.** Dê o seu melhor e pare de buscar uma resposta milagrosa que vai “resolver” tudo, ela não existe.',
+        'Seja guiado por decisões conscientes, não por desejos e impulsos',
+        'Não defina objetivos tão rígidos; talvez você nem saiba o que vai te fazer feliz de verdade. As coisas podem sair do planejado, mas se você estiver dando o melhor de si, a vida te dará o melhor dela (que você ainda nem conhece).',
+        'Sua vida não é sua se você se preocupa em excesso com o que os outros pensam.',
+        'É o novo que traz o desafio e a necessidade de aprendizado. E uma vida fácil se resumiria na famosa “zona de conforto”, que não nos proporciona o que nossa alma humana pede: evolução.',
+    ];
+
+    const INTERVAL = 43200000; // 12 horas em milissegundos
+
+    function getRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        return quotes[randomIndex];
+    }
+
+    function displayQuote() {
+        document.getElementById('quote').innerHTML = getRandomQuote();
+    }
+
+    function exibirWidget() {
+        let hoje = new Date();
+        exibirSaudacoes(hoje);
+        exibirData(hoje);
+        exibirRelogio(hoje);
+        displayQuote();
+        setTimeout(exibirWidget, 500);
+    }
+
+    exibirWidget();
+    setInterval(displayQuote, INTERVAL);
+</script>
+</body>
+</html>

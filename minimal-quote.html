@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +6,19 @@
     <title>Quote</title>
 
     <style>
-
         .widget {
-            padding: 5px 5px ;
+            padding: 5px 5px;
             color: #FFFFFF;
             text-align: center;
-                max-width: 95%;
+            max-width: 95%;
             margin: auto;
             font-variant-caps: petite-caps;
             font-size: 2em;
-
         }
 
         div {
-             width: 95%;
-             min-height: 100px;
-
+            width: 95%;
+            min-height: 100px;
             background:
                 linear-gradient(to right, white 4px, transparent 4px) 0 0,
                 linear-gradient(to right, white 4px, transparent 4px) 0 100%,
@@ -32,62 +28,40 @@
                 linear-gradient(to bottom, white 4px, transparent 4px) 100% 0,
                 linear-gradient(to top, white 4px, transparent 4px) 0 100%,
                 linear-gradient(to top, white 4px, transparent 4px) 100% 100%;
-
             background-repeat: no-repeat;
             background-size: 20px 20px;
-}
-
-     
+        }
     </style>
 </head>
 <body>
-
     <div class="widget" id="widget"></div>
 
+    <script>
+        const quotes = [
+            'Hoje vai ser um ótimo dia!',
+            'A fé nos faz ir além do possível',
+            'A cura acontece no caminho',
+            // (mais citações aqui)
+        ];
 
-<script>
+        const INTERVAL = 86400000;
 
-quotes=[
-'Hoje vai ser um ótimo dia!',
-'A fé nos faz ir além do possível',
-'A cura acontece no caminho',
-'Devemos sempre ser gratos ao que Deus nos oferece',
-'Para tudo tem um jeito, e se não teve jeito ainda não chegou ao fim',
-'ao se fazer presente, você pode descobrir “segredos” que fazem a vida ganhar outro tom',
-'Se você der a oportunidade de realmente EXISTIR na vida, algumas coisas triviais podem ganhar muito sentido — e a presença preencher o que parece vazio.',
-'É existindo pra valer, com consciência, que se desliga o modo piloto automático.',
-'No final das contas, a sabedoria que é, de fato, um tesouro imaterial, é o mais valioso.',
-'Lembra quando você queria o que você tem hoje?',
-'Se você persegue dois coelhos ao mesmo tempo… Não vai pegar nenhum dos dois.',
-'Fazer muitas coisas ao mesmo tempo é meramente a oportunidade de estragar mais de uma coisa ao mesmo tempo.',
-'Seu passado não te define; é a sua percepção do passado que te define',
-'O único caminho genuíno para a felicidade é aquele construído com base nas suas próprias prioridades, nas suas paixões e no que realmente importa para você.',
-'Mas o propósito não se resume à carreira. Se assim fosse, uma criança, um idoso, um morador de rua ou uma dona de casa não teriam propósito. Uma vida com propósito acontece quando escolhemos trabalhar com o que temos. **O seu propósito é o que a vida pede de você AGORA.** Dê o seu melhor e pare de buscar uma resposta milagrosa que vai “resolver” tudo, ela não existe.',
-'Seja guiado por decisões conscientes, não por desejos e impulsos',
-'Não defina objetivos tão rígidos; talvez você nem saiba o que vai te fazer feliz de verdade. As coisas podem sair do planejado, mas se você estiver dando o melhor de si, a vida te dará o melhor dela (que você ainda nem conhece).',
-'Sua vida não é sua se você se preocupa em excesso com o que os outros pensam.',
-'É o novo que traz o desafio e a necessidade de aprendizado. E uma vida fácil se resumiria na famosa “zona de conforto”, que não nos proporciona o que nossa alma humana pede:evolução.',
-];
+        function displayQuote(index) {
+            document.getElementById('widget').innerHTML = quotes[index];
+        }
 
-const INTERVAL = 86400000;
+        function displayWidget() {
+            quotes.forEach((quote, i) => {
+                setTimeout(() => {
+                    displayQuote(i);
+                }, i * INTERVAL);
+            });
+        }
 
-function dispalyQuote(){
-
-    document.getElementById('widget').innerHTML =quotes[0];
-    quotes.forEach((quote, i) => {
-        setTimeout(() => {
-            document.getElementById('widget').innerHTML =quote;
-        }, i * INTERVAL);  
-    });
-    }
-
-    function dispalyWidget() {
-        dispalyQuote();
-        setTimeout(dispalyWidget, quotes.length*INTERVAL);
-    }
-    dispalyWidget()
-
-</script>
-
+        displayQuote(0);  // Exibe a primeira citação imediatamente
+        displayWidget();
+        setInterval(displayWidget, quotes.length * INTERVAL);
+    </script>
 </body>
 </html>
+
